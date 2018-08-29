@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:id="@+id/relativeLayout">
+
+        <TextView
+            android:id="@+id/empName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:text="员工姓名:"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:orientation="horizontal"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/bd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:text="线别:"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Zlinecode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:text="13"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp"
+            android:layout_marginLeft="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/gz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="工种:"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp" />
+
+        <TextView
+            android:id="@+id/profession"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="搬运工"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp" />
+
+        <TextView
+            android:id="@+id/qdsj"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:text="签到时间:"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/gz"
+            android:layout_alignStart="@+id/gz"
+            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp" />
+        <TextView
+            android:id="@+id/dayTime"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dip"
+            android:text="2018-08-24 08:30"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="12sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/gz"
+            android:layout_alignStart="@+id/gz"
+            android:layout_marginLeft="160dp"
+            android:layout_marginStart="160dp" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">考勤</string>
+    <string name="login_username">班组长工号</string>
+    <string name="login_btn_commit">登 录</string>
+    <string name="workshop">车间</string>
+    <string name="Zlinecode">线别</string>
+    <string name="Zbc">班别</string>
+    <string name="profession">工种</string>
+    <string name="technology">工艺</string>
+    <string name="signIn">签到</string>
+    <string name="printer">考勤详情</string>
+    <string name="empId">工号</string>
+    <string name="empName">员工姓名</string>
+    <string name="dayTime">考勤时间</string>
+    <string name="werksList">请选择:</string>
+    <string name="cancel">取消</string>
+    <string name="scan_barcode_hint">将条形码对入取景框，即可自动扫描</string>
+    <string name="scan_barcode_title">条形码扫描</string>
+    <string name="scan_qrcode_title">二维码扫描</string>
+    <string name="scan_allcode_title">二维码或条形码扫描</string>
+    <string name="scan_qrcode_hint">将二维码对入取景框，即可自动扫描</string>
+    <string name="scan_allcode_hint">将二维码或条形码对入取景框，即可自动扫描</string>
+    <string name="title_activity_sao_mao">SaoMaoActivity</string>
+    <string name="action_settings">Settings</string>
+    <color name="line_color">#cccccc</color>
+    <color name="edittext_line_color">#000000</color>
+    <string name="title_activity_jump_to">JumpToActivity</string>
+
+
+    </resources>
