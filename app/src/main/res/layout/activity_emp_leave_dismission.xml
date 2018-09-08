@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.cxg.empattendance.activity.EmpAttendanceActivity">
+    tools:context="com.cxg.empattendance.activity.EmpLeaveAnddismissionActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,53 +19,12 @@
                 android:layout_height="wrap_content">
 
                 <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:digits="@+id/text"
-                        android:text="@string/workshop"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/workshop"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1.70"
-                        android:focusable="false"
-                        android:inputType="text"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp">
-
-                        <requestFocus />
-                    </TextView>
-                </TableRow>
-
-                <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:digits="@+id/text"
-                        android:text="@string/Zlinecode"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
                     <EditText
-                        android:id="@+id/Zlinecode"
+                        android:id="@+id/leave"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:layout_marginLeft="20dp"
@@ -79,103 +38,6 @@
                         <requestFocus />
                     </EditText>
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:digits="@+id/text"
-                        android:text="@string/Zbc"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/Zbc"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1.70"
-                        android:focusable="false"
-                        android:inputType="text"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp">
-
-                        <requestFocus />
-                    </EditText>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:digits="@+id/text"
-                        android:text="@string/profession"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/profession"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="2.0"
-                        android:inputType="text"
-                        android:focusable="false"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="16sp">
-
-                        <requestFocus />
-                    </EditText>
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="5dp"
-                        android:digits="@+id/text"
-                        android:text="@string/technology"
-                        android:textColor="@android:color/black"
-                        android:textSize="16sp" />
-
-                    <EditText
-                        android:id="@+id/technology"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_weight="1.70"
-                        android:inputType="text"
-                        android:focusable="false"
-                        android:textColor="@android:color/holo_blue_dark"
-                        android:textSize="14sp">
-
-                        <requestFocus />
-                    </EditText>
-                </TableRow>
-
                 <TableRow
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
@@ -195,17 +57,26 @@
                         android:id="@+id/empId"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
-                        android:layout_marginLeft="20dp"
                         android:layout_marginBottom="5dp"
                         android:layout_marginTop="5dp"
                         android:layout_weight="1.70"
                         android:inputType="text"
-                        android:focusable="false"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="14sp">
 
                         <requestFocus />
                     </EditText>
+
+                    <Button
+                    android:id="@+id/scanCode"
+                    android:layout_width="102dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dip"
+                    android:layout_weight="0.30"
+                    android:background="@color/colorPrimaryDark"
+                    android:text="扫一扫"
+                    android:textColor="@color/color1"/>
+
                 </TableRow>
 
                 <TableRow
@@ -281,12 +152,44 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="5dp"
                         android:digits="@+id/text"
-                        android:text="@string/dayTime"
+                        android:text="请假/离职时间"
                         android:textColor="@android:color/black"
                         android:textSize="16sp" />
 
+                    <EditText
+                        android:id="@+id/leaveStartDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.70"
+                        android:focusable="false"
+                        android:inputType="text"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textSize="14sp">
+
+                        <requestFocus />
+                    </EditText>
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
                     <TextView
-                        android:id="@+id/dayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginTop="5dp"
+                        android:digits="@+id/text"
+                        android:text="至"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/leaveDateEnd"
                         android:layout_height="wrap_content"
                         android:layout_width="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -294,11 +197,12 @@
                         android:layout_marginTop="5dp"
                         android:layout_weight="1.70"
                         android:inputType="text"
+                        android:focusable="false"
                         android:textColor="@android:color/holo_blue_dark"
                         android:textSize="14sp">
 
                         <requestFocus />
-                    </TextView>
+                    </EditText>
                 </TableRow>
 
                 <TableRow
@@ -321,6 +225,39 @@
                         <requestFocus />
                     </TextView>
                 </TableRow>
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:digits="@+id/text"
+                        android:text="备注"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/note"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1.70"
+                        android:background="@android:drawable/edit_text"
+                        android:inputType="textMultiLine"
+                        android:maxLines="8"
+                        android:minLines="5"
+                        android:scrollbars="vertical"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp">
+                        <requestFocus />
+                    </EditText>
+                </TableRow>
+
 
                 <!--按钮操作-->
                 <TableRow
@@ -329,47 +266,25 @@
                     android:layout_marginTop="10dp">
 
                     <Button
-                        android:id="@+id/signIn"
+                        android:id="@+id/signInOk"
                         android:layout_width="102dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dip"
                         android:layout_weight="0.30"
                         android:background="@color/colorPrimaryDark"
-                        android:text="@string/signIn"
+                        android:text="确认"
                         android:textColor="@color/color1"/>
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
                     <Button
-                        android:id="@+id/leave_dimission"
+                        android:id="@+id/returnHome"
                         android:layout_width="102dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="3dip"
                         android:layout_weight="0.30"
                         android:background="@color/colorPrimaryDark"
-                        android:text="请假/离职"
+                        android:text="返回首页"
                         android:textColor="@color/color1"/>
                 </TableRow>
 
-                <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <Button
-                        android:id="@+id/printer"
-                        android:layout_width="102dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="3dip"
-                        android:layout_weight="0.30"
-                        android:background="@color/colorPrimaryDark"
-                        android:text="@string/printer"
-                        android:textColor="@color/color1"/>
-                </TableRow>
             </TableLayout>
         </LinearLayout>
     </ScrollView>

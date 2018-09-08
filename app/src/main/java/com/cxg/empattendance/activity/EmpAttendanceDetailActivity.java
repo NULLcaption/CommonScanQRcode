@@ -104,6 +104,10 @@ public class EmpAttendanceDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 考勤列表
+     * @param empInfoList1
+     */
     private void gotoAdpter(List<EmpInfo> empInfoList1) {
         if (empInfoList1==null) {
             empInfoList1 = new ArrayList<>();

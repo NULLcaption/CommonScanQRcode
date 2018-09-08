@@ -44,11 +44,16 @@ import java.util.regex.Pattern;
 */
 public class EmpAttendanceActivity extends AppCompatActivity {
 
-    private TextView workshop,dayTime,empName,userId;
+    private TextView workshop,dayTime,empName,userId,empCode;
     private EditText Zlinecode,Zbc,profession,technology,empId;
-    private Button pinterButton,signIn;
+    private Button pinterButton,signIn,leave_dimission;
     private Dialog overdialog;
     private Dialog waitingDialog;
+    //工种配置
+    private List<String> listpro;
+    //工艺配置
+    private List<String> listtec;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,7 @@ public class EmpAttendanceActivity extends AppCompatActivity {
         workshop = (TextView) findViewById(R.id.workshop);
         dayTime = (TextView) findViewById(R.id.dayTime);
         empName = (TextView) findViewById(R.id.empName);
+        empCode = (TextView) findViewById(R.id.empCode);
         //选择框选择
         Zlinecode = (EditText) findViewById(R.id.Zlinecode);
         Zlinecode.setOnClickListener(BtnClicked);
@@ -92,8 +98,33 @@ public class EmpAttendanceActivity extends AppCompatActivity {
                 getEmpAttendanceDetail();
             }
         });
+        //签到按钮
         signIn = (Button) findViewById(R.id.signIn);
         signIn.setOnClickListener(BtnClicked);
+        //请假&离职
+        leave_dimission = (Button) findViewById(R.id.leave_dimission);
+        leave_dimission.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pinterButton.setFocusable(true);
+                pinterButton.requestFocusFromTouch();
+                gotoLeaveAnddismission();
+            }
+        });
+    }
+
+    /**
+    * @description: 请假&离职页面
+    * @author xg.chen
+    * @create 2018/9/7
+    */
+    public void gotoLeaveAnddismission() {
+        Intent intent = new Intent(EmpAttendanceActivity.this, EmpLeaveAnddismissionActivity.class);
+        Bundle useInfoBundle = new Bundle();
+        useInfoBundle.putString("userId",userId.getText().toString());
+        intent.putExtras(useInfoBundle);
+        startActivity(intent);
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
     }
 
     /**
@@ -214,10 +245,10 @@ public class EmpAttendanceActivity extends AppCompatActivity {
         protected void onPostExecute(EmpInfo result) {
             dismissWaitingDialog();
             if (result != null) {
+                empCode.setText(result.getEmpCode());
                 empName.setText(result.getEmpName());
-                profession.setText(result.getProfession());
-                technology.setText(result.getTechnology());
             } else {
+                empCode.setText("");
                 empName.setText("");
                 Toast.makeText(getApplicationContext(), "连接超时(Emp is null)!", Toast.LENGTH_SHORT).show();
             }
@@ -279,7 +310,7 @@ public class EmpAttendanceActivity extends AppCompatActivity {
                     TextView tv_titlePro = (TextView) overdiaView_pro
                             .findViewById(R.id.Title);
                     tv_titlePro.setText("请选择工种:");
-                    List<String> listpro = new ArrayList<>();
+                    listpro = new ArrayList<>();
                     listpro.add("搬运工");
                     listpro.add("打包工");
                     listpro.add("组装工");
@@ -309,7 +340,7 @@ public class EmpAttendanceActivity extends AppCompatActivity {
                     TextView tv_titleTec = (TextView) overdiaView_tec
                             .findViewById(R.id.Title);
                     tv_titleTec.setText("请选择工艺:");
-                    List<String> listtec = new ArrayList<>();
+                    listtec = new ArrayList<>();
                     listtec.add("搬运");
                     listtec.add("打包");
                     listtec.add("组装");
@@ -400,8 +431,6 @@ public class EmpAttendanceActivity extends AppCompatActivity {
             dismissWaitingDialog();
             if (result != null) {
                 if (result.equals("SUCCESS")) {
-                    profession.setText("");
-                    technology.setText("");
                     empId.setText("");
                     empName.setText("");
                     Toast.makeText(getApplicationContext(), "签到成功!", Toast.LENGTH_SHORT).show();

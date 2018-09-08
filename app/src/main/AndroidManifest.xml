@@ -47,6 +47,11 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
+            android:name=".activity.EmpLeaveAnddismissionActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme"
@@ -58,6 +63,11 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.CommonScanActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".activity.CommonScan4LeaveActivity"
             android:exported="true"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />

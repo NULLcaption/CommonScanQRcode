@@ -32,6 +32,16 @@ public class Staff implements Serializable {
     private String arts;
     @DatabaseField
     private String joinOrganize;
+    @DatabaseField
+    private String workDate;
+
+    public String getWorkDate() {
+        return workDate;
+    }
+
+    public void setWorkDate(String workDate) {
+        this.workDate = workDate;
+    }
 
     public String getSeq() {
         return seq;

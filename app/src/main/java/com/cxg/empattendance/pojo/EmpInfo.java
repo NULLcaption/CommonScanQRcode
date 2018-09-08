@@ -18,6 +18,8 @@ public class EmpInfo implements Serializable {
     @DatabaseField
     private String empName;
     @DatabaseField
+    private String empCode;
+    @DatabaseField
     private String Zlinecode;
     @DatabaseField
     private String Zbc;
@@ -31,6 +33,54 @@ public class EmpInfo implements Serializable {
     private String userId;
     @DatabaseField
     private String workshop;
+    @DatabaseField
+    private String leave;
+    @DatabaseField
+    private String note;
+    @DatabaseField
+    private String leaveStartDate;
+    @DatabaseField
+    private String leaveDateEnd;
+
+    public String getEmpCode() {
+        return empCode;
+    }
+
+    public void setEmpCode(String empCode) {
+        this.empCode = empCode;
+    }
+
+    public String getLeave() {
+        return leave;
+    }
+
+    public void setLeave(String leave) {
+        this.leave = leave;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getLeaveStartDate() {
+        return leaveStartDate;
+    }
+
+    public void setLeaveStartDate(String leaveStartDate) {
+        this.leaveStartDate = leaveStartDate;
+    }
+
+    public String getLeaveDateEnd() {
+        return leaveDateEnd;
+    }
+
+    public void setLeaveDateEnd(String leaveDateEnd) {
+        this.leaveDateEnd = leaveDateEnd;
+    }
 
     public String getWorkshop() {
         return workshop;

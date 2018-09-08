@@ -52,13 +52,18 @@ public class LoginActivity extends AppCompatActivity {
     */
     public void init() {
         userId = (EditText) findViewById(R.id.userId);
-        userId.setOnFocusChangeListener(ChangeListener);
+//        userId.setOnFocusChangeListener(ChangeListener);
         userId.setOnEditorActionListener(EnterListenter);
         userName = (TextView) findViewById(R.id.userName);
         workshop = (TextView) findViewById(R.id.workshop);
         findViewById(R.id.btn_login).setOnClickListener(BtnClicked);
     }
 
+    /**
+    * @description: 登录按钮监听
+    * @author xg.chen
+    * @create 2018/9/6
+    */
     private TextView.OnEditorActionListener EnterListenter = new TextView.OnEditorActionListener() {
 
         @Override
@@ -71,12 +76,12 @@ public class LoginActivity extends AppCompatActivity {
                             && KeyEvent.ACTION_DOWN == event.getAction())) {
                         if (!"".equals(userId.getText().toString().trim())) {
                             // 正则判断下是否输入值为数字
-//                            Pattern p2 = Pattern.compile("\\d");
-//                            String userId1 = userId.getText().toString().trim();
-//                            Matcher matcher = p2.matcher(userId1);
-//                            if (matcher.matches()) {
-//                                Toast.makeText(getApplicationContext(), "ZJJ:请输入准确的班组长工号!", Toast.LENGTH_SHORT).show();
-//                            }
+                            Pattern p2 = Pattern.compile("\\d");
+                            String userId1 = userId.getText().toString().trim();
+                            Matcher matcher = p2.matcher(userId1);
+                            if (matcher.matches()) {
+                                Toast.makeText(getApplicationContext(), "ZJJ:请输入准确的班组长工号!", Toast.LENGTH_SHORT).show();
+                            }
                             new getUserInfo4Workshop().execute(userId.getText().toString().trim());
                         } else {
                             Toast.makeText(getApplicationContext(), "ZJJ:请输入班组长工号!", Toast.LENGTH_SHORT).show();
@@ -102,12 +107,12 @@ public class LoginActivity extends AppCompatActivity {
                     if (!hasFocus) {
                         if (!"".equals(userId.getText().toString().trim())) {
                             // 正则判断下是否输入值为数字
-//                            Pattern p2 = Pattern.compile("\\d");
-//                            String userId1 = userId.getText().toString().trim();
-//                            Matcher matcher = p2.matcher(userId1);
-//                            if (matcher.matches()) {
-//                                Toast.makeText(getApplicationContext(), "ZJJ:请输入准确的班组长工号!", Toast.LENGTH_SHORT).show();
-//                            }
+                            Pattern p2 = Pattern.compile("\\d");
+                            String userId1 = userId.getText().toString().trim();
+                            Matcher matcher = p2.matcher(userId1);
+                            if (matcher.matches()) {
+                                Toast.makeText(getApplicationContext(), "ZJJ:请输入准确的班组长工号!", Toast.LENGTH_SHORT).show();
+                            }
                             new getUserInfo4Workshop().execute(userId.getText().toString().trim());
                         } else {
                             Toast.makeText(getApplicationContext(), "ZJJ:请输入班组长工号!", Toast.LENGTH_SHORT).show();

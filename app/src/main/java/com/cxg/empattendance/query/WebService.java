@@ -12,7 +12,10 @@ import com.cxg.empattendance.utils.HttpUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,12 +36,19 @@ public class WebService implements IDataProvider{
 
     //接口请求地址
     private static String OPENAPIURL = "http://139.219.197.114:8881";
+//    private static String OPENAPIURL = "http://10.3.9.141:8081";
     //传入班长的EXP登录名进行查询
     private static String GETUSER = "/attendAction/findMonitor";
     //查询员工信息
     private static String GETEMP = "/attendAction/findStaffList";
     //记录考勤信息
     private static String RECODE_AT = "/attendAction/recodeAttend";
+    //获取考勤信息
+    private static String RECODE_AT_LIST = "/attendAction/findAttendList";
+    //请假
+    private static String RECODE_LE = "/attendAction/leaveAttend";
+    //离职
+    private static String RECODE_QU = "/attendAction/quitAttend";
 
     private WebService() {
         super();
@@ -61,12 +71,12 @@ public class WebService implements IDataProvider{
             //根据传入的Id获取班组长的姓名和车间
             String result = HttpUtils.sendGet(OPENAPIURL+GETUSER,"code="+string);
             Gson gson = new Gson();
-            EmpTest empTest = gson.fromJson(result, EmpTest.class);
-            if (empTest != null) {
+            Staff staff = gson.fromJson(result, Staff.class);
+            if (staff != null) {
                 userInfo = new UserInfo();
-                userInfo.setUserId(empTest.getEmpId());
-                userInfo.setUserName(empTest.getEmpName());
-                userInfo.setWorkshop(empTest.getOrgName());
+                userInfo.setUserId(staff.getStaffCode());
+                userInfo.setUserName(staff.getStaffName());
+                userInfo.setWorkshop(staff.getWorkshop());
                 return userInfo;
             }
         } catch (Exception e) {
@@ -93,16 +103,22 @@ public class WebService implements IDataProvider{
     public List<EmpInfo> getEmpAttendanceDetailByUserId(String userId) {
         List<EmpInfo> empInfoList = new ArrayList<>();
         try {
-            System.out.println("userId+++++++++++++>>"+userId);
+            String result = HttpUtils.sendGet(OPENAPIURL+RECODE_AT_LIST,"createUser="+userId);
+            Gson gson = new Gson();
+            List<Staff> staffList = gson.fromJson(result, new TypeToken<List<Staff>>(){}.getType());
+            for (Staff staff : staffList) {
+                EmpInfo empInfo = new EmpInfo();
+                if(staff.getStaffName() == null) {
+                    empInfo.setEmpName("MASTER");
+                } else {
+                    empInfo.setEmpName(staff.getStaffName());
+                }
+                empInfo.setZlinecode(staff.getWorkshop());
+                empInfo.setProfession(staff.getPost());
+                empInfo.setDayTime(staff.getWorkDate());
 
-            EmpInfo empInfo = new EmpInfo();
-
-            empInfo.setEmpName("Master");
-            empInfo.setZlinecode("12");
-            empInfo.setProfession("Move");
-            empInfo.setDayTime("2018-08-24");
-
-            empInfoList.add(empInfo);
+                empInfoList.add(empInfo);
+            }
 
             return empInfoList;
         } catch (Exception e) {
@@ -115,15 +131,12 @@ public class WebService implements IDataProvider{
     public EmpInfo getEmpNameById(String empId) {
         EmpInfo empInfo = new EmpInfo();
         try {
-            Map<String,String> map = new HashMap<>();
-            map.put("staffId",empId);
-            String result = HttpUtils.sendGet(OPENAPIURL+GETEMP,"map="+map);
+            String result = HttpUtils.sendGet(OPENAPIURL+GETEMP,"staffId="+empId);
             Gson gson = new Gson();
             List<Staff> staffList = gson.fromJson(result, new TypeToken<List<Staff>>(){}.getType());
             if (staffList.size() != 0) {
+                empInfo.setEmpCode(staffList.get(0).getStaffCode());
                 empInfo.setEmpName(staffList.get(0).getStaffName());
-                empInfo.setProfession(staffList.get(0).getPost());
-                empInfo.setTechnology(staffList.get(0).getArts());
             }
             return empInfo;
         } catch (Exception e) {
@@ -142,6 +155,52 @@ public class WebService implements IDataProvider{
             String arts = empInfo.getTechnology();
             String result = HttpUtils.sendGet(OPENAPIURL+RECODE_AT,
                     "createUser="+createUser+"&staffId="+staffId+"&workshop="+workshop+"&post="+post+"&arts="+arts);
+            if (result != null) {
+                return "SUCCESS";
+            } else {
+                return "ERROR";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ERROR";
+    }
+
+    @Override
+    public String signInForEmpLeaveByUserId(EmpInfo empInfo) {
+        try {
+            String staffId = empInfo.getEmpId();
+            String createUser = empInfo.getUserId();
+            String startDate = empInfo.getLeaveStartDate()+":00";
+            String endDate = empInfo.getLeaveDateEnd()+":00";
+            String remark = empInfo.getNote();
+            String result = HttpUtils.sendGet(OPENAPIURL+RECODE_LE,
+                    "staffId="+staffId+"&createUser="+createUser
+                            +"&startDate="+ URLEncoder.encode(startDate)
+                            +"&endDate="+URLEncoder.encode(endDate)
+                            +"&remark="+URLEncoder.encode(remark));
+            if (result != null) {
+                return "SUCCESS";
+            } else {
+                return "ERROR";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "ERROR";
+    }
+
+    @Override
+    public String signInForEmpDismissionByUserId(EmpInfo empInfo) {
+        try {
+            String staffId = empInfo.getEmpId();
+            String createUser = empInfo.getUserId();
+            String startDate = empInfo.getLeaveStartDate()+":00";
+            String remark = empInfo.getNote();
+            String result = HttpUtils.sendGet(OPENAPIURL+RECODE_QU,
+                    "staffId="+staffId+"&createUser="+createUser
+                            +"&startDate="+URLEncoder.encode(startDate)
+                            +"&remark="+URLEncoder.encode(remark));
             if (result != null) {
                 return "SUCCESS";
             } else {

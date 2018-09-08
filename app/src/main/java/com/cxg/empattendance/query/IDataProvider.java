@@ -3,6 +3,7 @@ package com.cxg.empattendance.query;
 import android.app.Activity;
 
 import com.cxg.empattendance.pojo.EmpInfo;
+import com.cxg.empattendance.pojo.Staff;
 import com.cxg.empattendance.pojo.UserInfo;
 
 import java.util.List;
@@ -55,4 +56,18 @@ public interface IDataProvider {
      * @return
      */
     String signInForEmpByUserId(EmpInfo empInfo);
+
+    /**
+     * 请假
+     * @param empInfo
+     * @return
+     */
+    String signInForEmpLeaveByUserId(EmpInfo empInfo);
+
+    /**
+     * 离职
+     * @param empInfo
+     * @return
+     */
+    String signInForEmpDismissionByUserId(EmpInfo empInfo);
 }

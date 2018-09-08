@@ -4,56 +4,82 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.cxg.empattendance.R;
 import com.cxg.empattendance.utils.Constant;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
-* @description: 二维码生成首页
+* @description: 考勤首页
 * @author xg.chen
 * @create 2018/8/27
 */
 
 public class MainActivity extends Activity {
+
+    private TextView userId,userName,workshop;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        int mode = getIntent().getIntExtra(Constant.REQUEST_SCAN_MODE, Constant.REQUEST_SCAN_MODE_ALL_MODE);
+        initView();
+        initData();
+    }
 
+    /**
+     * 初始化视图
+     */
+    private void initView() {
+        userId = (EditText) findViewById(R.id.userId);
+        userName = (TextView) findViewById(R.id.userName);
+        workshop = (TextView) findViewById(R.id.workshop);
+    }
+
+    /**
+     * 初始化绑定数据
+     */
+    public void initData() {
+        Bundle bundle = this.getIntent().getExtras();
+        if (bundle != null) {
+            userId.setText(bundle.getString("userId"));
+            userName.setText(bundle.getString("userName"));
+            workshop.setText(bundle.getString("workshop"));
+        }
 
     }
 
     /**
-     * 按钮监听事件，这里我使用Butterknife，不喜欢的也可以直接写监听
-     * @param view
-     */
-    @OnClick({R.id.create_code,R.id.scan_2code,R.id.scan_bar_code,R.id.scan_code})
+    * @description: 按钮监听事件，这里我使用Butterknife，不喜欢的也可以直接写监听
+    * @author xg.chen
+    * @create 2018/8/29
+    */
+    @OnClick({R.id.sigIn,R.id.leave_dimission})
     public void clickListener(View view){
         Intent intent;
         switch (view.getId()){
-            case  R.id.create_code: //生成码
-                intent=new Intent(this,CreateCodeActivity.class);
+            case  R.id.sigIn: //签到
+                intent=new Intent(this,EmpAttendanceActivity.class);
+                Bundle useInfoBundle = new Bundle();
+                useInfoBundle.putString("userId",userId.getText().toString().trim());
+                useInfoBundle.putString("userName",userName.getText().toString().trim());
+                useInfoBundle.putString("workshop",workshop.getText().toString().trim());
+                intent.putExtras(useInfoBundle);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
-            case  R.id.scan_2code: //扫描二维码
+            case  R.id.leave_dimission: //请假/离职
                 intent=new Intent(this,CommonScanActivity.class);
-                intent.putExtra(Constant.REQUEST_SCAN_MODE,Constant.REQUEST_SCAN_MODE_QRCODE_MODE);
                 startActivity(intent);
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
-            case  R.id.scan_bar_code://扫描条形码
-                intent=new Intent(this,CommonScanActivity.class);
-                intent.putExtra(Constant.REQUEST_SCAN_MODE,Constant.REQUEST_SCAN_MODE_BARCODE_MODE);
-                startActivity(intent);
-                break;
-            case  R.id.scan_code://扫描条形码或者二维码
-                intent=new Intent(this,CommonScanActivity.class);
-                intent.putExtra(Constant.REQUEST_SCAN_MODE,Constant.REQUEST_SCAN_MODE_ALL_MODE);
-                startActivity(intent);
+            default:
                 break;
         }
     }
